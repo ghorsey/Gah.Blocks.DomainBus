@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Gah.Blocks.DomainBus</name>
+    </assembly>
+    <members>
+        <member name="T:Gah.Blocks.DomainBus.Configuration.DomainBusBuilder">
+            <summary>
+            Class <c>CommandBuilder</c>.
+            Implements the <see cref="T:Gah.Blocks.DomainBus.Configuration.IDomainBusBuilder" />.
+            </summary>
+            <seealso cref="T:Gah.Blocks.DomainBus.Configuration.IDomainBusBuilder" />
+        </member>
+        <member name="F:Gah.Blocks.DomainBus.Configuration.DomainBusBuilder.services">
+            <summary>
+            The services.
+            </summary>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Configuration.DomainBusBuilder.#ctor(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Gah.Blocks.DomainBus.Configuration.DomainBusBuilder"/> class.
+            </summary>
+            <param name="services">The services.</param>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Configuration.DomainBusBuilder.AddCommand``2">
+            <inheritdoc />
+            <summary>
+            Adds the command.
+            </summary>
+            <typeparam name="TCommand">The type of the t command.</typeparam>
+            <typeparam name="TCommandHandler">The type of the t command handler.</typeparam>
+            <returns>A/an <c>ICommandBuilder</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Configuration.DomainBusBuilder.AddQuery``3">
+            <summary>
+            Adds the query.
+            </summary>
+            <typeparam name="TQuery">The type of the query.</typeparam>
+            <typeparam name="TQueryResponse">The type of the query response.</typeparam>
+            <typeparam name="TQueryHandler">The type of the query handler.</typeparam>
+            <returns>A/an <c>IQueryBuilder</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Configuration.DomainBusBuilder.AddEvent``2">
+            <summary>
+            Adds the event.
+            </summary>
+            <typeparam name="TEvent">The type of the t event.</typeparam>
+            <typeparam name="TEventHandler">The type of the t event handler.</typeparam>
+            <returns>A/an <c>IEventBuilder</c>.</returns>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.Configuration.IDomainBusBuilder">
+            <summary>
+            Interface <c>ICommandBuilder</c>.
+            </summary>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Configuration.IDomainBusBuilder.AddCommand``2">
+            <summary>
+            Adds the command.
+            </summary>
+            <typeparam name="TCommand">The type of the t command.</typeparam>
+            <typeparam name="TCommandHandler">The type of the t command handler.</typeparam>
+            <returns>A/an <c>ICommandBuilder</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Configuration.IDomainBusBuilder.AddQuery``3">
+            <summary>
+            Adds the query.
+            </summary>
+            <typeparam name="TQuery">The type of the query.</typeparam>
+            <typeparam name="TQueryResponse">The type of the query response.</typeparam>
+            <typeparam name="TQueryHandler">The type of the query handler.</typeparam>
+            <returns>A/an <c>IQueryBuilder</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Configuration.IDomainBusBuilder.AddEvent``2">
+            <summary>
+            Adds the event.
+            </summary>
+            <typeparam name="TEvent">The type of the t event.</typeparam>
+            <typeparam name="TEventHandler">The type of the t event handler.</typeparam>
+            <returns>A/an <c>IEventBuilder</c>.</returns>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.Configuration.DomainBusConfigurationExtensions">
+            <summary>
+            Class <c>ConfigurationExtensions</c>.
+            </summary>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Configuration.DomainBusConfigurationExtensions.AddDomainBus(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Adds the query.
+            </summary>
+            <param name="services">The services.</param>
+            <returns>A/an <c>IQueryBuilder</c>.</returns>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.DomainCommand">
+            <summary>
+            Class DomainCommandBase.
+            Implements the <see cref="T:Gah.Blocks.DomainBus.IDomainCommand" />.
+            </summary>
+            <seealso cref="T:Gah.Blocks.DomainBus.IDomainCommand" />
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainCommand.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Gah.Blocks.DomainBus.DomainCommand"/> class.
+            </summary>
+            <param name="correlationId">The correlation identifier.</param>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainCommand.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Gah.Blocks.DomainBus.DomainCommand"/> class.
+            </summary>
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.DomainCommand.CorrelationId">
+            <summary>
+            Gets the correlation identifier.
+            </summary>
+            <value>The correlation identifier.</value>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.DomainCommandHandler`1">
+            <summary>
+            The abstract Domain Command Handler Base class.
+            </summary>
+            <typeparam name="TCommand">The command to handle.</typeparam>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainCommandHandler`1.#ctor(Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Gah.Blocks.DomainBus.DomainCommandHandler`1" /> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <exception cref="T:System.ArgumentNullException">logger.</exception>
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.DomainCommandHandler`1.Logger">
+            <summary>
+            Gets the logger.
+            </summary>
+            <value>The logger.</value>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainCommandHandler`1.MediatR#IRequestHandler{TCommand,MediatR#Unit}#Handle(`0,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainCommandHandler`1.Handle(`0,System.Threading.CancellationToken)">
+            <summary>
+            Handle the specified command.
+            </summary>
+            <param name="command">The command to handle.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.DomainEvent">
+            <summary>
+            Class DomainEventBase.
+            Implements the <see cref="T:Gah.Blocks.DomainBus.IDomainEvent" />.
+            </summary>
+            <seealso cref="T:Gah.Blocks.DomainBus.IDomainEvent" />
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainEvent.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Gah.Blocks.DomainBus.DomainEvent"/> class.
+            </summary>
+            <param name="correlationId">The correlation identifier.</param>
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.DomainEvent.EventType">
+            <summary>
+            Gets the type of the event.
+            </summary>
+            <value>The type of the event.</value>
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.DomainEvent.CorrelationId">
+            <summary>
+            Gets the correlation identifier.
+            </summary>
+            <value>The correlation identifier.</value>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.DomainQuery`1">
+            <summary>
+            Class DomainQueryBase.
+            Implements the <see cref="T:Gah.Blocks.DomainBus.IDomainQuery`1" />.
+            </summary>
+            <typeparam name="TResponse">The type of the t response.</typeparam>
+            <seealso cref="T:Gah.Blocks.DomainBus.IDomainQuery`1" />
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainQuery`1.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Gah.Blocks.DomainBus.DomainQuery`1"/> class.
+            </summary>
+            <param name="correlationId">The correlation identifier.</param>
+            <exception cref="T:System.ArgumentNullException">correlationId.</exception>
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.DomainQuery`1.CorrelationId">
+            <summary>
+            Gets the correlation identifier.
+            </summary>
+            <value>The correlation identifier.</value>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.DomainQueryHandler`2">
+            <summary>
+            Class DomainQueryHandlerBase.
+            Implements the <see cref="T:Gah.Blocks.DomainBus.IDomainQueryHandler`2" />.
+            </summary>
+            <typeparam name="TQuery">The type of the t query.</typeparam>
+            <typeparam name="TResponse">The type of the t response.</typeparam>
+            <seealso cref="T:Gah.Blocks.DomainBus.IDomainQueryHandler`2" />
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainQueryHandler`2.#ctor(Microsoft.Extensions.Logging.ILogger)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Gah.Blocks.DomainBus.DomainQueryHandler`2"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <exception cref="T:System.ArgumentNullException">logger.</exception>
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.DomainQueryHandler`2.Logger">
+            <summary>
+            Gets the logger.
+            </summary>
+            <value>The logger.</value>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.DomainQueryHandler`2.Handle(`0,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.IDomainBus">
+            <summary>
+            Interface IDomainBus.
+            </summary>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.IDomainBus.ExecuteAsync``1(Gah.Blocks.DomainBus.IDomainQuery{``0},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified query.
+            </summary>
+            <typeparam name="TResponse">The type of the t response.</typeparam>
+            <param name="query">The query.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A/an <c>Task&lt;TResponse&gt;</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.IDomainBus.ExecuteAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified command.
+            </summary>
+            <typeparam name="TCommand">The type of the t command.</typeparam>
+            <param name="command">The command.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A/an <c>Task</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.IDomainBus.PublishAsync``1(System.Threading.CancellationToken,``0[])">
+            <summary>
+            Publishes the asynchronous.
+            </summary>
+            <typeparam name="TEvent">The type of the t event.</typeparam>
+            <param name="cancellationToken">The cancellation token.</param>
+            <param name="events">The events.</param>
+            <returns>A/an <c>Task</c>.</returns>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.IDomainCommand">
+            <summary>
+            Interface <c>ICommand</c>.
+            Implements the <see cref="T:MediatR.IRequest" />.
+            </summary>
+            <seealso cref="T:MediatR.IRequest" />
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.IDomainCommand.CorrelationId">
+            <summary>
+            Gets the correlation identifier.
+            </summary>
+            <value>The correlation identifier.</value>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.IDomainCommandHandler`1">
+            <summary>
+            The CommandHandler interface.
+            Implements the <see cref="T:MediatR.IRequestHandler`1" />.
+            </summary>
+            <typeparam name="TCommand">The type of the command.</typeparam>
+            <seealso cref="T:MediatR.IRequestHandler`1" />
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.IDomainEvent">
+            <summary>
+            Interface <c>IEvent</c>
+            Implements the <see cref="T:MediatR.INotification" />.
+            </summary>
+            <seealso cref="T:MediatR.INotification" />
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.IDomainEvent.EventType">
+            <summary>
+            Gets the type of the event.
+            </summary>
+            <value>The type of the event.</value>
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.IDomainEvent.CorrelationId">
+            <summary>
+            Gets the correlation identifier.
+            </summary>
+            <value>The correlation identifier.</value>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.IDomainEventHandler`1">
+            <summary>
+            Interface <c>IEventHandler</c>
+            Implements the <see cref="T:MediatR.INotificationHandler`1" />.
+            </summary>
+            <typeparam name="TEvent">The type of the t event.</typeparam>
+            <seealso cref="T:MediatR.INotificationHandler`1" />
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.IDomainQuery`1">
+            <summary>
+            Interface <c>IQuery</c>
+            Implements the <see cref="T:MediatR.IRequest`1" />.
+            </summary>
+            <typeparam name="TResponse">The type of the response.</typeparam>
+            <seealso cref="T:MediatR.IRequest`1" />
+        </member>
+        <member name="P:Gah.Blocks.DomainBus.IDomainQuery`1.CorrelationId">
+            <summary>
+            Gets the correlation identifier.
+            </summary>
+            <value>The correlation identifier.</value>
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.IDomainQueryHandler`2">
+            <summary>
+            Interface <c>IQueryHandler</c>
+            Implements the <see cref="T:MediatR.IRequestHandler`2" />.
+            </summary>
+            <typeparam name="TQuery">The type of the t query.</typeparam>
+            <typeparam name="TResponse">The type of the t response.</typeparam>
+            <seealso cref="T:MediatR.IRequestHandler`2" />
+        </member>
+        <member name="T:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator">
+            <summary>
+            Class DomainBus.
+            Implements the <see cref="T:Gah.Blocks.DomainBus.IDomainBus" />.
+            </summary>
+            <seealso cref="T:Gah.Blocks.DomainBus.IDomainBus" />
+        </member>
+        <member name="F:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator.mediator">
+            <summary>
+            The mediator.
+            </summary>
+        </member>
+        <member name="F:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator.logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator.#ctor(MediatR.IMediator,Microsoft.Extensions.Logging.ILogger{Gah.Blocks.DomainBus.Mediatr.DomainBusMediator})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator"/> class.
+            </summary>
+            <param name="mediator">The mediator.</param>
+            <param name="logger">The logger.</param>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator.ExecuteAsync``1(Gah.Blocks.DomainBus.IDomainQuery{``0},System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified query.
+            </summary>
+            <typeparam name="TResponse">The type of the t response.</typeparam>
+            <param name="query">The query.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A/an <c>Task&lt;TResponse&gt;</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator.ExecuteAsync``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            Executes the specified command.
+            </summary>
+            <typeparam name="TCommand">The type of the t command.</typeparam>
+            <param name="command">The command.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A/an <c>Task</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator.PublishAsync``1(System.Collections.Generic.IEnumerable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Publishes the asynchronous.
+            </summary>
+            <typeparam name="TEvent">The type of the t event.</typeparam>
+            <param name="events">The events.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>A/an <c>Task</c>.</returns>
+        </member>
+        <member name="M:Gah.Blocks.DomainBus.Mediatr.DomainBusMediator.PublishAsync``1(System.Threading.CancellationToken,``0[])">
+            <summary>
+            Publishes the asynchronous.
+            </summary>
+            <typeparam name="TEvent">The type of the t event.</typeparam>
+            <param name="cancellationToken">The cancellation token.</param>
+            <param name="events">The events.</param>
+            <returns>A/an <c>Task</c>.</returns>
+        </member>
+    </members>
+</doc>
